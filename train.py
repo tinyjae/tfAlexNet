@@ -21,7 +21,7 @@ y = tf.placeholder(tf.float32, [None, n_classes])
 keep_prob = tf.placeholder(tf.float32) # dropout (keep probability)
 
 pred = inference.alex_net(x, keep_prob, n_classes, imagesize, img_channel)
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred, labels=y))
 
 global_step = tf.Variable(0, trainable=False)
 lr = tf.train.exponential_decay(learn_rate, global_step, 1000, decay_rate, staircase=True)
